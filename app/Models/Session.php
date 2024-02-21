@@ -15,7 +15,7 @@ class Session extends Model
 
 public function cosmetologist()
 {
-    return $this->belongsTo(Cosmetologist::class, 'cosmetologist_id');
+    return $this->belongsTo(Cosmetologist::class, 'cosmetologist_id', 'id');
 }
    public function providedServices()
    {

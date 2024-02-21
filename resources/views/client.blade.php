@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h2>Клиент: {{ $client->name }}</h2>
+    <h2>Клиент: {{ $client->full_name }}</h2>
 
     <h3>Список сеансов:</h3>
     <ul>

@@ -10,13 +10,13 @@ class CosmetologistSessionController extends Controller
 {
     public function index()
     {
-        $sessions = Session::all(); // Здесь можно получить список всех сеансов для косметологов
-        return view('sessions', compact('sessions'));
+        $cosmetologists = Cosmetologist::all(); 
+        return view('cosmetologists', compact('cosmetologists'));
     }
 
     public function show($id)
     {
-        $session = Session::find($id); // Здесь можно получить конкретный сеанс для косметолога по его идентификатору
-        return view('session', compact('session'));
+        $cosmetologist = Cosmetologist::find($id); 
+        return view('cosmetologist', compact('cosmetologist'));
     }
 }

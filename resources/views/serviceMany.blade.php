@@ -17,8 +17,8 @@
     @foreach ($serviceMany->sessions as $session)
     <tr>
         <td>{{$session->id}}</td>
-        <td>{{$session->client_id}}</td>
-        <td>{{$session->cosmetologist_id}}</td>
+        <td>{{$session->client->full_name}}</td>
+        <td>{{$session->cosmetologist->full_name}}</td>
     </tr>
     @endforeach
     </table>

@@ -10,7 +10,7 @@ class ClientSessionController extends Controller
 {
     public function index()
     {
-        $sessions = Session::with('client', 'cosmetologist')->get();
+        $sessions = Session::all();
         return view('sessions', compact('sessions'));
     }
 
