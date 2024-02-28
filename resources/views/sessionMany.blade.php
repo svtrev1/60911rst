@@ -14,11 +14,11 @@
             <td>Имя</td>
             <td>Цена</td>
         </tr>
-    @foreach ($sessionMany->services as $service)
+    @foreach ($sessionMany->services as $i)
     <tr>
-        <td>{{$service->id}}</td>
-        <td>{{$service->name}}</td>
-        <td>{{$service->price}}</td>
+        <td>{{$i->id}}</td>
+        <td>{{$i->name}}</td>
+        <td>{{$i->price}}</td>
     </tr>
     @endforeach
     </table>

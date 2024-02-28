@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class ServiceController extends Controller
 {
-    public function show($id)
+    public function show(string $id)
     {
 
         return view('serviceMany', [

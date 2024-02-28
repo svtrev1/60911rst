@@ -5,6 +5,7 @@ use App\Http\Controllers\ClientSessionController;
 use App\Http\Controllers\CosmetologistSessionController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\SessionCrudController;
 
 
 /*
@@ -32,3 +33,10 @@ Route::get('/cosmetologists/session/{session}', [CosmetologistSessionController:
 
 Route::get('/services/{id}', [ServiceController::class, 'show'])->name('serviceMany');
 Route::get('/sessions/{id}', [SessionController::class, 'show'])->name('sessionMany');
+
+Route::get('/session/create', [SessionCrudController::class, 'create']);
+ Route::post('/session', [SessionCrudController::class,'store']);
+
+Route::get('/session/edit/{id}', [SessionCrudController::class,'edit']);
+Route::post('/session/update/{id}', [SessionCrudController::class,'update']);
+Route::get('/session/destroy/{id}', [SessionCrudController::class,'destroy']);
