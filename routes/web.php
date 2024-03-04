@@ -23,7 +23,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/clients/sessions', [ClientSessionController::class, 'index']);
+Route::get('/sessionPages', [ClientSessionController::class, 'index']);
 Route::get('/clients/session/{session}', [ClientSessionController::class, 'show']);
 
 Route::get('/cosmetologists/sessions', [CosmetologistSessionController::class, 'index']);

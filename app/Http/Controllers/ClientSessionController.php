@@ -8,10 +8,12 @@ use Illuminate\Http\Request;
 
 class ClientSessionController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $sessions = Session::all();
-        return view('sessions', compact('sessions'));
+        $perpage = $request->perpage ?? 2;
+        return view('sessions', [
+            'sessions' => Session::paginate($perpage)->withQueryString()
+        ]);
     }
 
     public function show($id)
