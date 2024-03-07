@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Gate;
 use Illuminate\Http\Request;
 use App\Models\Session; 
 use App\Models\Client; 
@@ -26,7 +27,7 @@ class SessionCrudController extends Controller
         
     $session = new Session($validated);
     $session->save();
-    return redirect('/clients/sessions');
+    return redirect('/sessionPages');
     }
     public function edit(string $id)
     {
@@ -50,12 +51,15 @@ class SessionCrudController extends Controller
         $session->start_datetime = $validated['start_datetime'];
         $session->end_datetime = $validated['end_datetime'];
         $session->save();
-        return redirect('/clients/sessions');
+        return redirect('/sessionPages');
     }
 
         public function destroy(string $id)
         {
+            if (!Gate::allows('destroy-session', Session::all()->where('id', $id)->first())) {
+                return redirect('/error')->with('message', 'У вас нет разрешения на удаление сеанса номер ' . $id);
+            }
             Session::destroy($id);
-            return redirect('/clients/sessions');
+            return redirect('/sessionPages');
         }
 }
