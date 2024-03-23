@@ -12,5 +12,4 @@ class Client extends Model
    {
        return $this->hasMany(Session::class);
    }
-
 }

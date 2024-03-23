@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientSessionController;
@@ -8,23 +9,14 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\SessionCrudController;
 
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/clients', [ClientController::class, 'index']);
+Route::get('/auth', [LoginController::class, 'index']);
+Route::get('/services', [ServiceController::class, 'index']);
 
-Route::get('/sessionPages', [ClientSessionController::class, 'index'])->middleware('auth');
+Route::get('/sessionPages', [ClientSessionController::class, 'index'])->middleware('auth')->name('sessionPages');
 Route::get('/clients/session/{session}', [ClientSessionController::class, 'show'])->middleware('auth');
 
 Route::get('/cosmetologists/sessions', [CosmetologistSessionController::class, 'index'])->middleware('auth');
@@ -32,10 +24,10 @@ Route::get('/cosmetologists/session/{session}', [CosmetologistSessionController:
 
 
 
-Route::get('/services/{id}', [ServiceController::class, 'show'])->name('serviceMany')->middleware('auth');
-Route::get('/sessions/{id}', [SessionController::class, 'show'])->name('sessionMany')->middleware('auth');
+Route::get('/service/{id}', [ServiceController::class, 'show'])->name('serviceMany')->middleware('auth');
+Route::get('/sessiones/{id}', [SessionController::class, 'show'])->name('sessionMany')->middleware('auth');
 
-Route::get('/session/create', [SessionCrudController::class, 'create'])->middleware('auth');
+Route::get('/session/create', [SessionCrudController::class, 'create'])->middleware('auth')->name('session_create');
  Route::post('/session', [SessionCrudController::class,'store'])->middleware('auth');
 
 Route::get('/session/edit/{id}', [SessionCrudController::class,'edit'])->middleware('auth');

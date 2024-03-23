@@ -12,6 +12,11 @@ use App\Models\Cosmetologist;
 
 class LoginController extends Controller
 {
+
+    public function index()
+    {
+        return view("auth");
+    }
    public function authenticate(Request $request)
    {
         $credentiald = $request->validate([
@@ -21,7 +26,9 @@ class LoginController extends Controller
         if (Auth::attempt($credentiald)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('login');
+            return redirect()->intended('/')->withErrors([
+                'success' => 'Вы успешно вошли в систему',
+            ]);
         }
         return back()->withErrors([
             'error' => 'The provided crederntials do not match our records.', 
@@ -38,6 +45,9 @@ class LoginController extends Controller
     Auth::logout();
     $request->session()->invalidate();
     $request->session()->regenerateToken();
-    return redirect('login');
+    $request->session()->flush();
+    return redirect('/auth')->withErrors([
+        'success' => 'Вы успешно вышли из системы',
+    ]);
    }
 }

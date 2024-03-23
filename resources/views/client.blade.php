@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layout')
 
 @section('content')
     <h2>Клиент: {{ $client->full_name }}</h2>

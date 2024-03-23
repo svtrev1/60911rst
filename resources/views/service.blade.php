@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layout')
 
 @section('content')
     <h2>Услуга: {{ $service->name }}</h2>

@@ -8,9 +8,14 @@ class ServiceController extends Controller
 {
     public function show(string $id)
     {
-
         return view('serviceMany', [
             'serviceMany' => Service::all()->where('id', $id)->first()
         ]);
     }
+    public function index()
+    {
+        $services = Service::all();
+        return view('services', compact('services'));
+    }
+
 }

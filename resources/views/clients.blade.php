@@ -1,11 +1,12 @@
-@extends('layouts.app')
+@extends('layout')
 
 @section('content')
     <h1>Список клиентов</h1>
-    <ul>
+    <ul class="list-group">
         @foreach($clients as $client)
-            <li>{{ $client->name }}</li>
+            <li class="list-group-item">{{ $client->full_name }}</li>
         @endforeach
     </ul>
 @endsection
+
 
