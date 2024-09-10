@@ -36,5 +36,18 @@ Route::group(['middleware' => ['auth:sanctum']], function (){
         return $request->user();
     });
     Route::get('/logout', [AuthController::class, 'logout']);
+    
+    Route::get('/session', [SessionApiController::class, 'index']);
+    Route::get('/session/{id}', [SessionApiController::class, 'show']);
+
+    Route::get('/client', [ClientApiController::class, 'index']);
+    Route::get('/client/{id}', [ClientApiController::class, 'show']);
+
+    Route::get('/cosmetologist', [CosmetologistApiController::class, 'index']);
+    Route::get('/cosmetologist/{id}', [CosmetologistApiController::class, 'show']);
+
+
 });
 Route::post('/login', [AuthController::class, 'login']);
+
+// Route::middleware('auth:sanctum')->get('/session', [SessionApiController::class, 'index']);
