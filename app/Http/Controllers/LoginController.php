@@ -26,19 +26,17 @@ class LoginController extends Controller
         if (Auth::attempt($credentiald)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('/')->withErrors([
-                'success' => 'Вы успешно вошли в систему',
-            ]);
+            return redirect()->intended('sessionPages');
         }
         return back()->withErrors([
             'error' => 'The provided crederntials do not match our records.', 
         ])->onlyInput('email', 'password');
    }
 
-   public function login(Request $request)
-   {
-       return view('login', ['user' => Auth::user()]);
-   }
+//    public function login(Request $request)
+//    {
+//        return view('sessionPages', ['user' => Auth::user()]);
+//    }
 
    public function logout(Request $request): RedirectResponse
    {
