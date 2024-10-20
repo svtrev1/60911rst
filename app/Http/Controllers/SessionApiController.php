@@ -10,9 +10,13 @@ class SessionApiController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return response(Session::all());
+        return response(Session::with('client', 'cosmetologist')
+            ->limit($request->perpage ?? 5)
+            ->offset(($request->perpage ?? 5) * ($request->page ?? 0))
+            ->get());
+
     }
 
     /**
@@ -45,5 +49,10 @@ class SessionApiController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function total()
+    {
+        return response(Session::all()->count());
     }
 }

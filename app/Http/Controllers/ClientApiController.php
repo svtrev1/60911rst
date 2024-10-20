@@ -7,9 +7,10 @@ use Illuminate\Http\Request;
 
 class ClientApiController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return response(Client::all());
+        return response(Client::limit($request->perpage ?? 5) -> offset(($request->perpage ?? 5)
+        * ($request->page ?? 0)) -> get());
     }
 
     public function store(Request $request)
@@ -30,5 +31,9 @@ class ClientApiController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+    public function total()
+    {
+        return response(Client::all()->count());
     }
 }

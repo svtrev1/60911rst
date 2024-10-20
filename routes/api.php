@@ -22,14 +22,18 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/session', [SessionApiController::class, 'index']);
+Route::get('/sessions', [SessionApiController::class, 'index']);
 Route::get('/session/{id}', [SessionApiController::class, 'show']);
+Route::get('/sessions_total', [SessionApiController::class, 'total']);
 
-Route::get('/client', [ClientApiController::class, 'index']);
+Route::get('/clients', [ClientApiController::class, 'index']);
 Route::get('/client/{id}', [ClientApiController::class, 'show']);
+Route::get('/clients_total', [CLientApiController::class, 'total']);
 
-Route::get('/cosmetologist', [CosmetologistApiController::class, 'index']);
-Route::get('/cosmetologist/{id}', [CosmetologistApiController::class, 'show']);
+Route::get('/cosmetologs', [CosmetologistApiController::class, 'index']);
+Route::get('/cosmetolog/{id}', [CosmetologistApiController::class, 'show']);
+Route::get('/cosmetologs_total', [CosmetologistApiController::class, 'total']);
+
 
 Route::group(['middleware' => ['auth:sanctum']], function (){
     Route::get('/user', function (Request $request) {

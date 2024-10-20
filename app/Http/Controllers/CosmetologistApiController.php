@@ -10,9 +10,10 @@ class CosmetologistApiController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return response(Cosmetologist::all());
+        return response(Cosmetologist::limit($request->perpage ?? 5) -> offset(($request->perpage ?? 5)
+        * ($request->page ?? 0)) -> get());
     }
 
     /**
@@ -45,5 +46,10 @@ class CosmetologistApiController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function total()
+    {
+        return response(Cosmetologist::all()->count());
     }
 }
